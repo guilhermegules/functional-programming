@@ -66,3 +66,62 @@ const averageClass = divide(grades.reduce(sum), grades.length);
 
 console.log(`Average is ${averageClass}`);
 ```
+
+### Functional paradigm
+
+- First Class Functions;
+  - Functions are values;
+
+```
+const students = [
+  { name: "Ana", grade: 8.5 },
+  { name: "Bia", grade: 7.3 },
+  { name: "Gil", grade: 5.8 },
+  { name: "Leo", grade: 7.6 },
+  { name: "Gui", grade: 9.1 },
+  { name: "Lia", grade: 4.9 },
+  { name: "Rui", grade: 7.0 },
+  ];
+
+// Imperative way
+const aproved = [];
+
+for (let i = 0; i < students.length; i++) {
+  if (students[i].grade >= 7) {
+    aproved.push(students[i]);
+  }
+}
+
+console.log(aproved);
+
+// Functional way
+const isAproved = (student) => student.grade >= 7;
+
+const aproved = students.filter(isAproved);
+
+console.log(aproved);
+```
+
+- Imutability;
+- PLOP (Term invented by closure creator);
+  - Place-Oriented Programming;
+  - New information overwrite the old ones;
+  - Emerged because a computation limitation;
+    - Low RAM and low hard disk;
+- Why change?
+  - Functional programming is more simple;
+    - make it easier to write and maintain code;
+  - No time coupling;
+  - Few competition problems;
+  - Works with immutability;
+- You can forget everything but ...
+  - Isolated immutability;
+  - Shared immutability;
+- Current scenario:
+  - Abundant memory;
+  - Multiple processors.
+
+<h3 align="center">Value vs Reference</h3>
+<p align="center">
+  <img src="./images/value-reference.png">
+</p>
