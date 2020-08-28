@@ -125,3 +125,12 @@ console.log(aproved);
 <p align="center">
   <img src="./images/value-reference.png">
 </p>
+
+### How JavaScript Works
+
+- JavaScript is a single thread language;
+- Heap;
+- Event Loop;
+- Garbage Collector;
+- Stack;
+- Event Queue;
