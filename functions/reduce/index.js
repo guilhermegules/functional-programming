@@ -27,3 +27,23 @@ const totals = cart.map(getTotal);
 const generalValues = totals.reduce(sum, 0);
 
 console.log(generalValues);
+
+// Creating simply reduce
+Array.prototype.reducing = function (fn, initialValue) {
+  let acc = initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    if (!acc && i === 0) {
+      acc = this[i];
+      continue;
+    }
+
+    acc = fn(acc, this[i], i, this);
+  }
+
+  return acc;
+};
+
+const generalValuesReducing = totals.reducing(sum, 0);
+
+console.log(generalValuesReducing);

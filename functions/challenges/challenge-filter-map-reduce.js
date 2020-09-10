@@ -24,15 +24,15 @@ const average = (acc, el) => {
   return {
     quantity,
     total,
-    media: total / quantity,
+    average: total / quantity,
   };
 };
 
-const initialValue = { quantity: 0, total: 0, media: 0 };
+const initialValue = { quantity: 0, total: 0, average: 0 };
 
 const cartOperation = cart
   .filter(isFragile)
   .map(totals)
-  .reduce(average, initialValue);
+  .reduce(average, initialValue).average;
 
 console.log(cartOperation);
