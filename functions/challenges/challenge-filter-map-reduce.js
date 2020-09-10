@@ -17,22 +17,22 @@ const cart = [
 
 const isFragile = (item) => item.fragile;
 const totals = (item) => item.quantity * item.price;
+const average = (acc, el) => {
+  const quantity = acc.quantity + 1;
+  const total = acc.total + el;
+
+  return {
+    quantity,
+    total,
+    media: total / quantity,
+  };
+};
+
+const initialValue = { quantity: 0, total: 0, media: 0 };
 
 const cartOperation = cart
   .filter(isFragile)
   .map(totals)
-  .reduce(
-    (acc, el) => {
-      const quantity = acc.quantity + 1;
-      const total = acc.total + el;
-
-      return {
-        quantity,
-        total,
-        media: total / quantity,
-      };
-    },
-    { quantity: 0, total: 0, media: 0 }
-  );
+  .reduce(average, initialValue);
 
 console.log(cartOperation);
