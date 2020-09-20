@@ -34,7 +34,7 @@ const symbols = [
   ")",
 ];
 
-const files = readDirectory(subtitlesPath)
+const mostUsedWords = readDirectory(subtitlesPath)
   .then((path) => filterFileByExtension(path, ".srt"))
   .then(readFiles)
   .then(mergeElements)

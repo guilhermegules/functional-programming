@@ -35,12 +35,9 @@ const removeWhenHasNumber = (array) => {
 
 const removeSymbols = (symbols, array) => {
   return array.map((element) => {
-    let newText = element;
-    symbols.forEach((symbol) => {
-      newText = newText.split(symbol).join("");
-    });
-
-    return newText;
+    return symbols.reduce((acc, symbol) => {
+      return acc.split(symbol).join("");
+    }, element);
   });
 };
 
