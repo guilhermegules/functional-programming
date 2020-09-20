@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-function readDirectory(filePath) {
+const readDirectory = (filePath) => {
   return new Promise((resolve, reject) => {
     try {
       const files = fs.readdirSync(filePath);
@@ -11,9 +11,9 @@ function readDirectory(filePath) {
       reject(exception);
     }
   });
-}
+};
 
-function readFile(path) {
+const readFile = (path) => {
   return new Promise((resolve, reject) => {
     try {
       const content = fs.readFileSync(path, { encoding: "utf-8" });
@@ -22,19 +22,98 @@ function readFile(path) {
       reject(exception);
     }
   });
-}
+};
 
-const removeEmpty = (array) => array.filter((element) => element.trim());
+const removeWhenHasNumber = (array) => {
+  return array.filter((element) => {
+    const number = parseInt(element.trim());
+
+    //!(number !== 0 && !!number)
+    return number !== number; // when number get a value NaN we receive false in this comparation
+  });
+};
+
+const removeSymbols = (symbols, array) => {
+  return array.map((element) => {
+    let newText = element;
+    symbols.forEach((symbol) => {
+      newText = newText.split(symbol).join("");
+    });
+
+    return newText;
+  });
+};
+
+const removeEmptyElements = (array) =>
+  array.filter((element) => element.trim());
 
 const readFiles = (paths) => Promise.all(paths.map((path) => readFile(path)));
 
+const removeWhenHasPattern = (pattern) => {
+  return (array) => {
+    return array.filter((element) => !element.includes(pattern));
+  };
+};
+
 const filterFileByExtension = (array, pattern) =>
   array.filter((element) => element.endsWith(pattern));
+
+const mergeElements = (contents) => contents.join(" ");
+
+const splitText = (symbol) => {
+  return (text) => text.split(symbol);
+};
+
+const groupElements = (words) => {
+  return Object.values(
+    words.reduce((grouped, word) => {
+      const wordLowerCase = word.toLowerCase();
+      const quantity = grouped[wordLowerCase]
+        ? grouped[wordLowerCase].quantity + 1
+        : 1;
+
+      grouped[wordLowerCase] = { element: wordLowerCase, quantity };
+
+      return grouped;
+    }, {})
+  );
+};
+
+/**
+  Ordenation example:
+  [3, 1, 1, 5]
+  3 - 1 = 2
+  [1, 3, 1, 5]
+  3 - 1 = 2
+  [1, 1, 3, 5]
+ */
+const orderByNumbericAttribute = (attribute, orderBy = "asc") => {
+  return (array) => {
+    const desc = (obj1, obj2) => obj2[attribute] - obj1[attribute];
+    const asc = (obj1, obj2) => obj1[attribute] - obj2[attribute];
+
+    return array.sort(orderBy === "asc" ? asc : desc);
+  };
+};
+
+const save = (mostUsedWord) => {
+  fs.writeFileSync("most-used-words.txt", mostUsedWord, {
+    encoding: "utf-8",
+  });
+};
 
 module.exports = {
   readDirectory,
   filterFileByExtension,
   readFile,
   readFiles,
-  removeEmpty,
+  removeEmptyElements,
+  removeWhenHasPattern,
+  removeWhenHasNumber,
+  removeSymbols,
+  mergeElements,
+  splitText,
+  groupElements,
+  orderByNumbericAttribute,
+  save,
 };
