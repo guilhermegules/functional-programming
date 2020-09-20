@@ -49,5 +49,4 @@ const mostUsedWords = readDirectory(subtitlesPath)
   .then(removeWhenHasNumber)
   .then(groupElements)
   .then(orderByNumbericAttribute("quantity", "desc"))
-  .then(console.log)
   .then((mostUsedWords) => save(JSON.stringify(mostUsedWords)));
