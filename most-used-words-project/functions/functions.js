@@ -89,7 +89,7 @@ const orderByNumbericAttribute = (attribute, orderBy = "asc") => {
     const desc = (obj1, obj2) => obj2[attribute] - obj1[attribute];
     const asc = (obj1, obj2) => obj1[attribute] - obj2[attribute];
 
-    return array.sort(orderBy === "asc" ? asc : desc);
+    return [...array].sort(orderBy === "asc" ? asc : desc);
   };
 };
 
