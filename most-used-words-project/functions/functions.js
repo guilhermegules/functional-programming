@@ -1,6 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 
+const composition = (...fns) => {
+  return (value) => {
+    return fns.reduce(async (acc, fn) => {
+      return Promise.resolve(acc) === acc ? fn(await acc) : fn(acc);
+    }, value);
+  };
+};
+
 const readDirectory = (filePath) => {
   return new Promise((resolve, reject) => {
     try {
@@ -33,12 +41,14 @@ const removeWhenHasNumber = (array) => {
   });
 };
 
-const removeSymbols = (symbols, array) => {
-  return array.map((element) => {
-    return symbols.reduce((acc, symbol) => {
-      return acc.split(symbol).join("");
-    }, element);
-  });
+const removeSymbols = (symbols) => {
+  return (array) => {
+    return array.map((element) => {
+      return symbols.reduce((acc, symbol) => {
+        return acc.split(symbol).join("");
+      }, element);
+    });
+  };
 };
 
 const removeEmptyElements = (array) =>
@@ -52,8 +62,9 @@ const removeWhenHasPattern = (pattern) => {
   };
 };
 
-const filterFileByExtension = (array, pattern) =>
-  array.filter((element) => element.endsWith(pattern));
+const filterFileByExtension = (pattern) => {
+  return (array) => array.filter((element) => element.endsWith(pattern));
+};
 
 const mergeElements = (contents) => contents.join(" ");
 
@@ -100,6 +111,7 @@ const save = (mostUsedWord) => {
 };
 
 module.exports = {
+  composition,
   readDirectory,
   filterFileByExtension,
   readFile,

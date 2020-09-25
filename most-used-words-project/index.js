@@ -1,5 +1,4 @@
 const path = require("path");
-const { stringify } = require("querystring");
 const {
   readDirectory,
   filterFileByExtension,
@@ -13,6 +12,7 @@ const {
   groupElements,
   orderByNumbericAttribute,
   save,
+  composition,
 } = require("./functions/functions");
 
 const subtitlesPath = path.join(__dirname, "subtitles");
@@ -34,19 +34,44 @@ const symbols = [
   ")",
 ];
 
-const mostUsedWords = readDirectory(subtitlesPath)
-  .then((path) => filterFileByExtension(path, ".srt"))
-  .then(readFiles)
-  .then(mergeElements)
-  .then(splitText("\n"))
-  .then(removeEmptyElements)
-  .then(removeWhenHasPattern("-->"))
-  .then(removeWhenHasNumber)
-  .then((lines) => removeSymbols(symbols, lines))
-  .then(mergeElements)
-  .then(splitText(" "))
-  .then(removeEmptyElements)
-  .then(removeWhenHasNumber)
-  .then(groupElements)
-  .then(orderByNumbericAttribute("quantity", "desc"))
-  .then((mostUsedWords) => save(JSON.stringify(mostUsedWords)));
+/**
+ * @Promise way
+ */
+// const mostUsedWords = readDirectory(subtitlesPath)
+//   .then(filterFileByExtension(".srt"))
+//   .then(readFiles)
+//   .then(mergeElements)
+//   .then(splitText("\n"))
+//   .then(removeEmptyElements)
+//   .then(removeWhenHasPattern("-->"))
+//   .then(removeWhenHasNumber)
+//   .then(removeSymbols(symbols))
+//   .then(mergeElements)
+//   .then(splitText(" "))
+//   .then(removeEmptyElements)
+//   .then(removeWhenHasNumber)
+//   .then(groupElements)
+//   .then(orderByNumbericAttribute("quantity", "desc"))
+//   .then((mostUsedWords) => save(JSON.stringify(mostUsedWords)));
+
+const mostUsedWords = composition(
+  readDirectory,
+  filterFileByExtension(".srt"),
+  readFiles,
+  mergeElements,
+  splitText("\n"),
+  removeEmptyElements,
+  removeWhenHasPattern("-->"),
+  removeWhenHasNumber,
+  removeWhenHasPattern(symbols),
+  mergeElements,
+  splitText(" "),
+  removeEmptyElements,
+  removeWhenHasNumber,
+  groupElements,
+  orderByNumbericAttribute("quantity", "desc")
+);
+
+mostUsedWords(subtitlesPath).then((mostUsedWords) =>
+  save(JSON.stringify(mostUsedWords))
+);
