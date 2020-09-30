@@ -1,4 +1,4 @@
-## Reactive programming with RxJS
+## Reactive programming
 
 ### Observer pattern
 
