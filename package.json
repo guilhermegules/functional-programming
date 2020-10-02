@@ -1,0 +1,23 @@
+{
+  "name": "functional-programming",
+  "version": "1.0.0",
+  "description": "Here is my functional programming studies",
+  "main": "index.js",
+  "scripts": {
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guilhermegules/functional-programming.git"
+  },
+  "keywords": [],
+  "author": "Guilherme Gules Moreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guilhermegules/functional-programming/issues"
+  },
+  "homepage": "https://github.com/guilhermegules/functional-programming#readme",
+  "dependencies": {
+    "rxjs": "^6.6.3"
+  }
+}
