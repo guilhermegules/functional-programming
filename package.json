@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/guilhermegules/functional-programming.git"
   },
-  "keywords": [],
+  "keywords": [
+    "RxJS",
+    "Functional Programming",
+    "Study"
+  ],
   "author": "Guilherme Gules Moreira",
   "license": "ISC",
   "bugs": {
@@ -19,5 +23,8 @@
   "homepage": "https://github.com/guilhermegules/functional-programming#readme",
   "dependencies": {
     "rxjs": "^6.6.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
