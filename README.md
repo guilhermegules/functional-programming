@@ -134,3 +134,23 @@ console.log(aproved);
 - Garbage Collector;
 - Stack;
 - Event Queue;
+
+### RxJs
+
+- [Official Docs](https://rxjs-dev.firebaseapp.com/guide/overview);
+
+#### Operators
+
+> Operators are functions. There are two kinds of operators (Pipeable and Creation Operator)
+
+- Pipeable: these operators are the kind that can be piped using the syntax `observableInstance.pipe(operator())`. these include `filter()`, `mergeMap()`, etc. Essentially pipeable operators are pure functions;
+- Creation Operators: are the other kind of operators. which can be called as standalone functions to create a new Observable;
+- Marble diagrams, why use them for explain operators? from RxJs docs: To explain how operators work, textual descriptions are often not enough. Many operators are related to time, they may for instance delay, sample, throttle, or debounce value emissions in different ways. Diagrams are often a better tool for that. Marble Diagrams are visual representations of how operators work, and include the input Observable(s), the operator and its parameters, and the output Observable.
+
+> In a marble diagram, time flows to the right, and the diagram describes how values ("marbles") are emitted on the Observable execution.
+
+#### Marble diagram example:
+
+<p align="center">
+  <img src="./images/marble-diagram.png" alt="Marble diagram example">
+<p>
