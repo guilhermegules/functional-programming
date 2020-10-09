@@ -154,3 +154,11 @@ console.log(aproved);
 <p align="center">
   <img src="./images/marble-diagram.png" alt="Marble diagram example">
 <p>
+
+#### Pull vs Push
+
+```
+| Type | Single   | Multiple  |
+| PULL | Function | Iterator  |
+| PUSH | Promise  | Observable|
+```
