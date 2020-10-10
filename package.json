@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Here is my functional programming studies",
   "main": "index.js",
-  "scripts": {
-    "start": ""
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/guilhermegules/functional-programming.git"
@@ -24,8 +21,5 @@
   "dependencies": {
     "rxjs": "^6.6.3",
     "xmlhttprequest": "^1.8.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.4"
   }
 }
