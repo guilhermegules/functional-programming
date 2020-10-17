@@ -139,6 +139,11 @@ console.log(aproved);
 
 - [Official Docs](https://rxjs-dev.firebaseapp.com/guide/overview);
 
+#### Running examples
+
+- `npm install` installing all dependencies
+- `node path-for-file` for run example
+
 #### Operators
 
 > Operators are functions. There are two kinds of operators (Pipeable and Creation Operator)
