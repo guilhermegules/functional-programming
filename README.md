@@ -167,3 +167,45 @@ console.log(aproved);
 | PULL | Function | Iterator  |
 | PUSH | Promise  | Observable|
 ```
+
+### Lambda Calculus
+
+#### Creator
+
+**Alonzo Church (1903-1995)**
+
+Lambda Calculus is a formal mathematical system that expresses computations based on the abstraction and application of functions. It is a universal model of use that can be used to simulate any Turing machine. It was calculated by the mathematician Alonzo Church in the 1930s as part of his research on foundations of mathematics
+
+```
+Lambda Calculus can be called of the smaller universal programming language of the world
+```
+
+**Abstration of function**
+
+- generalization of concrete links to the problem
+
+**Function application**
+
+- Represents the act of calling the function
+
+**More definitions**
+
+- Variables are immutable
+- All functions always receive one param
+- All is function
+
+#### Syntax
+
+- λ === function
+- λa === params
+- λa.x === body or return
+
+![](./images/lambda-calculus-syntax.png)
+
+<hr>
+
+![](./images/lambda-functions.png)
+
+<hr>
+
+![](./images/lambda-application.png)
